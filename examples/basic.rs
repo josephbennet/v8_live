@@ -1,4 +1,4 @@
-use v8::{CreateParams, HandleScope, Isolate, V8, Script};
+use v8::{CreateParams, HandleScope, Isolate, Script, V8};
 fn main() {
     //initialize v8
     init();
@@ -23,9 +23,7 @@ fn main() {
     "#;
     let source = v8::String::new(context_scop, soure).unwrap();
     let script = Script::compile(context_scop, source, None).unwrap();
-    let result = script
-        .run(context_scop)
-        .unwrap();
+    let result = script.run(context_scop).unwrap();
     let value: String = serde_v8::from_v8(context_scop, result).unwrap();
     println!("Result is: {}", value);
 }
